@@ -1,9 +1,10 @@
-import { useFetch } from './hooks';
+import { useFetch, useLocalStorage } from './hooks';
 import type { Post } from './types';
 import './App.css';
 
 function App() {
   const { isLoading, error, data, refetch } = useFetch<Post>('https://jsonplaceholder.typicode.com/posts'); // http://localhost:3001/posts
+  const [value, { setItem, removeItem }] = useLocalStorage('some-key');
 
   return (
     <div className='tasks'>
@@ -25,6 +26,16 @@ function App() {
         </div>
       </div>
 
+      <div className='task2'>
+        <h2>Задание 2 - useLocalStorage</h2>
+        <div>
+          <p>Значение из LocalStorage: {value}</p>
+          <div>
+            <button onClick={() => setItem('new storage value')}>Задать значение</button>
+            <button onClick={() => removeItem()}>Удалить значение</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

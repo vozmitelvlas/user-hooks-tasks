@@ -1,2 +1,3 @@
 export * from "./Post";
-export * from "./fetch";
+export * from "./Fetch";
+export * from "./useLocalStorage";
