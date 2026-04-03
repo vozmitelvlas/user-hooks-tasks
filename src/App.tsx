@@ -1,4 +1,4 @@
-import { useFetch, useLocalStorage, useHover } from './hooks';
+import { useFetch, useLocalStorage, useHover, useViewportSize } from './hooks';
 import type { Post } from './types';
 import './App.css';
 
@@ -6,6 +6,7 @@ function App() {
   const { isLoading, error, data, refetch } = useFetch<Post>('https://jsonplaceholder.typicode.com/posts'); // http://localhost:3001/posts
   const [value, { setItem, removeItem }] = useLocalStorage('some-key');
   const { hovered, ref } = useHover<HTMLDivElement>();
+  const { height, width } = useViewportSize();
 
   return (
     <div className='tasks'>
@@ -39,6 +40,9 @@ function App() {
       </div>
       <div ref={ref} className='task3'>
         {hovered ? 'На меня навели мышку' : 'Наведи мышкой на меня'}
+      </div>
+      <div className='task3'>
+        Width: {width}, height: {height}
       </div>
     </div>
   );
